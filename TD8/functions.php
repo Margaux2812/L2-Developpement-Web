@@ -1,0 +1,542 @@
+<?php
+/*On crée un array avec les valeurs alphanumériques
+correspondant aux valeurs octales.
+Ce code sera executé seulement si la langue est anglaise
+donc la phrase de résultat est modifiée.*/
+function chmodTD8_en($oct){
+	$chmod =array('---', '--x', '-w-', '-wx-', 'r--', 'r-x', 'rw-', 'rwx');
+	$digit = str_split($oct);
+	
+	$result = "<p> For ".$oct." : « ";
+	
+	if(($digit[0]<8) &&($digit[0]>-1) && ($digit[1]<8) &&($digit[1]>-1) && ($digit[2]<8) &&($digit[2]>-1)){
+	$first = $chmod[$digit[0]];
+	$second = $chmod[$digit[1]];
+	$third = $chmod[$digit[2]];
+	
+	$result .= $first." ".$second." ".$third." »</p>";
+	}
+	
+	else{$result .= "Your digits composing your number must be between 0 and 7";}
+	return $result;
+}	
+
+/*Si le mois n'est pas instancié on met le mois courant
+et on utilise idate() afin d'avoir un entier. De même pour l'année.
+Sinon on vérifie que le mois est un entier compris entre 1 et 12 et 
+que l'année est un entier contenant 4 chiffres.*/
+function getMonth_en($month = null, $year = null){
+	
+	if(!isset($year)){
+		$year = idate('Y');
+	}
+
+	if(!isset($month)){
+		$month = idate('m');
+	}
+
+	if(($month>=1) && ($month<=12) && (is_int($month))){
+		
+		if((strlen( (string) $year)==4)&& (is_int($year))){
+			$result = "<table>
+						<tr>
+							<th colspan = \"7\" class=\"month\">".date('F', mktime(0, 0, 0, $month, 1, $year))."</th>
+						</tr>
+						<tr class=\"days\">
+							<th>Mon</th>
+							<th>Tue</th>
+							<th>Wed</th>
+							<th>Thu</th>
+							<th>Fri</th>
+							<th class=\"weekend\">Sat</th>
+							<th class=\"weekend\">Sun</th>
+						</tr>";
+			
+			/*Numéro correspondant au jour de la semaine (1 est Lundi et 7 est dimanche)*/
+			$num_prem_jour_semaine = date('N', mktime(0,0,0,$month, 1, $year));
+			$num_Der_Jour = date('j', mktime(0,0,0,$month+1, 0, $year));
+			$numJour = 1;
+			$jour_en_cours = date('j');
+			$annee_en_cours = date('Y');
+			$mois_en_cours = date('n');
+			
+			/*Première ligne avec cases blanches*/
+			$result .="<tr>\n";
+			for($colonne = 1; $colonne <=7 ; $colonne ++){
+				//Si le jour commence maintenant
+				if($num_prem_jour_semaine==$colonne){
+					//Si c'est le jour actuel
+					if(($num_prem_jour_semaine==$jour_en_cours) && ($month == $mois_en_cours) && ($year == $annee_en_cours)){
+						$result .= "<td class=\"jourJ\">";
+					}
+					elseif(($colonne ==6) || ($colonne ==7)){
+						$result .= "<td class=\"weekend\">";
+					}
+					else{
+						$result .= "<td>";
+					}
+					$result .= $numJour."</td>";
+					$numJour++;
+					$num_prem_jour_semaine++;
+				}
+				else{
+					$result .= "<td class=\"empty\"></td>\n";
+				}
+			}
+			
+			$result.="</tr>\n";
+			
+			/*On recommence la boucle à partir du nombre de jour qu'on a déjà affiché*/
+			while($numJour <= $num_Der_Jour){
+				$result .= "<tr>\n";
+				for($colonne =1; $colonne<= 7; $colonne ++){
+					/*Comme c'est un while on vérifie que dans le process on ne dépasse pas $num_Der_Jour*/
+					if($numJour<=$num_Der_Jour){
+						if(($numJour==$jour_en_cours) && ($month == $mois_en_cours) && ($year == $annee_en_cours)){
+							$result .= "<td class=\"jourJ\">";
+						}
+						elseif(($colonne ==6) || ($colonne ==7)){
+							$result .= "<td class=\"weekend\">";
+						}
+						else{
+							$result .= "<td>";
+						}
+						$result .= $numJour."</td>\n";
+						$numJour++;
+					}
+					else{
+						/*Finir avec des cases blanches*/
+						$result .= "<td class=\"empty\"></td>";
+					}
+				}
+				$result .= "</tr>\n";
+			}
+			
+			$result .="</table>\n";
+		}
+		else{
+			$result = "L'année demandée est incorrecte. Veuillez saisir
+		un nombre entier au format 'AAAA'";
+		}
+	}
+	else{
+		$result = "The month you are asking is incorrect. Please enter
+		a natural number between 1 and 12";
+	}
+	
+	return $result;
+}
+
+/*Si l'année n'est pas instanciée on affiche les 3 mois
+Sinon on vérifie que le format est valide et on affiche les mois
+de janvier à décembre dans un grand tableau*/
+function calendar_en($year = null, $colonne_demande = 4){
+	if(!isset($year)){
+		$year = date('Y');
+		$month = date('n');
+		/*On affiche les trois mois*/
+		$result = "<table class=\"calendar\">
+						<tr>
+							<td>";
+							
+		if(($month-1)>0){		
+			$result.= getMonth_en($month-1);
+		}
+		else{//Si on arrive à 0
+			$result.= getMonth_en('12', $year-1);
+		}
+		
+		$result .= "</td>
+					<td>".getMonth_en()."</td>
+					<td>";
+					
+		if(($month+1)<12){		
+			$result.= getMonth_en($month+1);
+		}
+		else{
+			$result.= getMonth_en('1', $year+1);
+		}
+		
+		$result .= "</td>
+			</tr>
+		</table>";
+	}	
+	elseif((strlen( (string) $year)==4)&& (is_int($year))){
+		/*Format d'année valide*/
+		$month = 1;
+		
+		$result = "<table id=\"calendar\">
+						<tr>
+							<th id=\"year\" colspan = \"".$colonne_demande."\">".$year."</th>
+						</tr>";
+		while($month<13){
+		/*La largeur doit être égale à la largeur totale divisée par
+		100 afin qu'on l'ait en % à la fin, pour le mettre dans <td style:.....>*/
+			$colonne_width = (1/$colonne_demande)*100;
+			$result.= "<tr>";
+			
+		/*Tant qu'on arrive pas au nombre de colonne demandé on continue puis on passera à la ligne*/
+			for($colonne=1; $colonne <= $colonne_demande; $colonne++){
+				/*Comme on est dans un while on vérifie que ca ne dépasse pas 13*/
+				if($month<13){
+					$result .= "<td style=\" width: ".$colonne_width."%;\">".getMonth_en($month, $year)."</td>";
+					$month++;
+				}
+				else{
+				//Sinon on rajoute des cases blanches
+					$result .= "<td></td>";
+				}
+			}	
+			$result .="</tr>";
+		}
+		
+		$result .= "</table>";
+	}
+	else{
+		$result = "The year you are asking is incorrect. Please set its
+		format to 'YYYY'";
+	}
+	
+	return $result;
+}
+
+	
+/*Même fonction qu'au dessus en français*/
+function chmodTD8($oct){
+	$chmod =array('---', '--x', '-w-', '-wx-', 'r--', 'r-x', 'rw-', 'rwx');
+	$digit = str_split($oct);
+	
+	$result = "<p> Pour ".$oct." : « ";
+	
+	if(($digit[0]<8) &&($digit[0]>-1) && ($digit[1]<8) &&($digit[1]>-1) && ($digit[2]<8) &&($digit[2]>-1)){
+	$first = $chmod[$digit[0]];
+	$second = $chmod[$digit[1]];
+	$third = $chmod[$digit[2]];
+	
+	$result .= $first." ".$second." ".$third." »</p>";
+	}
+	
+	else{$result .= "Vos chiffres composant votre nombre doit être compris entre 0 et 7";}
+	return $result;
+}	
+/*Même fonction qu'au dessus mais en français
+Il y a donc un tableau de mois (avec le premier vide, comme ça
+on commence avec 1-> janvier)*/
+function getMonth($month = null, $year = null){
+	
+	if(!isset($year)){
+		$year = idate('Y');
+	}
+
+	if(!isset($month)){
+		$month = idate('m');
+	}
+
+	if(($month>=1) && ($month<=12) && (is_int($month))){
+		
+		if((strlen( (string) $year)==4)&& (is_int($year))){
+			
+			$mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+			
+			$result = "<table>
+						<tr>
+							<th colspan = \"7\" class=\"month\">".$mois[$month]."</th>
+						</tr>
+						<tr class=\"days\">
+							<th>Lun</th>
+							<th>Mard</th>
+							<th>Mer</th>
+							<th>Jeu</th>
+							<th>Ven</th>
+							<th class=\"weekend\">Sam</th>
+							<th class=\"weekend\">Dim</th>
+						</tr>";
+			
+			$num_prem_jour_semaine = date('N', mktime(0,0,0,$month, 1, $year));
+			$num_Der_Jour = date('j', mktime(0,0,0,$month+1, 0, $year));
+			$numJour = 1;
+			$jour_en_cours = date('j');
+			$annee_en_cours = date('Y');
+			$mois_en_cours = date('n');
+			
+			/*Première ligne avec cases blanches*/
+			$result .="<tr>\n";
+			for($colonne = 1; $colonne <=7 ; $colonne ++){
+				if($num_prem_jour_semaine==$colonne){
+					if(($num_prem_jour_semaine==$jour_en_cours) && ($month == $mois_en_cours) && ($year == $annee_en_cours)){
+						$result .= "<td class=\"jourJ\">";
+					}
+					elseif(($colonne ==6) || ($colonne ==7)){
+						$result .= "<td class=\"weekend\">";
+					}
+					else{
+						$result .= "<td>";
+					}
+					$result .= $numJour."</td>";
+					$numJour++;
+					$num_prem_jour_semaine++;
+				}
+				else{
+					$result .= "<td class=\"empty\"></td>\n";
+				}
+			}
+			
+			$result.="</tr>\n";
+			
+			while($numJour <= $num_Der_Jour){
+				$result .= "<tr>\n";
+				for($colonne =1; $colonne<= 7; $colonne ++){
+					if($numJour<=$num_Der_Jour){
+						if(($numJour==$jour_en_cours) && ($month == $mois_en_cours) && ($year == $annee_en_cours)){
+							$result .= "<td class=\"jourJ\">";
+						}
+						elseif(($colonne ==6) || ($colonne ==7)){
+							$result .= "<td class=\"weekend\">";
+						}
+						else{
+							$result .= "<td>";
+						}
+						$result .= $numJour."</td>\n";
+						$numJour++;
+					}
+					else{
+						/*Finir avec des cases blanches*/
+						$result .= "<td class=\"empty\"></td>";
+					}
+				}
+				$result .= "</tr>\n";
+			}
+			
+			$result .="</table>\n";
+		}
+		else{
+			$result = "L'année demandée est incorrecte. Veuillez saisir
+		un nombre entier au format 'AAAA'";
+		}
+	}
+	else{
+		$result = "Le mois demandé est incorrect. Veuillez saisir
+		un nombre entier compris entre 1 et 12";
+	}
+	
+	return $result;
+}
+
+/*Même fonction qu'au dessus mais du coup on appelle
+la fonction qui retourne les mois en français*/
+function calendar($year = null, $colonne_demande = 4){
+	if(!isset($year)){
+		$year = date('Y');
+		$month = date('n');
+		/*On affiche les trois mois*/
+		$result = "<table class=\"calendar\">
+						<tr>
+							<td>";
+							
+		if(($month-1)>0){		
+			$result.= getMonth($month-1);
+		}
+		else{
+			$result.= getMonth('12', $year-1);
+		}
+		
+		$result .= "</td>
+					<td>".getMonth()."</td>
+					<td>";
+					
+		if(($month+1)<12){		
+			$result.= getMonth($month+1);
+		}
+		else{
+			$result.= getMonth('1', $year+1);
+		}
+		
+		$result .= "</td>
+			</tr>
+		</table>";
+	}	
+	elseif((strlen( (string) $year)==4)&& (is_int($year))){
+		/*Format d'année valide*/
+		$month = 1;
+		
+		$result = "<table id=\"calendar\">
+						<tr>
+							<th id=\"year\" colspan = \"".$colonne_demande."\">".$year."</th>
+						</tr>";
+		while($month<13){
+			$colonne_width = (1/$colonne_demande)*100;
+			$result.= "<tr>";
+			for($colonne=1; $colonne <= $colonne_demande; $colonne++){
+				if($month<13){
+					$result .= "<td style=\" width: ".$colonne_width."%;\">".getMonth($month, $year)."</td>";
+					$month++;
+				}
+				else{
+					$result .= "<td></td>";
+				}
+			}	
+			$result .="</tr>";
+		}
+		
+		$result .= "</table>";
+	}
+	else{
+		$result = "L'année demandée est incorrecte. Veuillez saisir
+		un nombre entier au format 'AAAA'";
+	}
+	
+	return $result;
+}
+
+/*---------fonction td8 -------*/
+
+function helloToKey($key){
+	//On met notre oucle dans une liste
+	$result = "<ul>\n";
+	//On répète le message autant de fois que demandé
+	for($num_message = 1; $num_message <= $key; $num_message++){
+		//On l'affiche dans un <li>
+		$result .= '<li> Hello numéro ' . $num_message . "</li>\n";		
+	}	
+	//On ferme notre liste
+	$result .= "</ul>\n";	
+	
+	return $result;
+}
+
+function getDateFr() {
+	//On retourne l'heure
+	$date = '<p>'.date("H:i").'</p>';
+	return $date;
+}
+
+function decToHex($key){
+	/*On ouvre un tableau et on écrit les th
+	présents sur la première ligne*/
+	$result = "<table>\n
+			<tr>\n
+				<th>Décimal</th>\n
+				<th>Héxadécimal avec dechex()</th>\n
+				<th>Héxadécimal avec printf()</th>\n
+			</tr>\n";
+	
+	/*On décide qu'il y aura autant de ligne que demandé*/
+	for($numero_decimal = 0; $numero_decimal <= $key; $numero_decimal++) {
+		
+		//On ouvre donc une ligne et on y écrit la valeur du numéro décimal
+		$result .='
+			<tr>
+				<td>' . $numero_decimal ."</td>";
+				
+		/*Si le numéro décimal est supérieur à 9, 
+		alors les caractères héxadécimaux changent*/
+		if($numero_decimal > 9) {
+			
+			/*On affiche donc dans une première case le numéro décimal
+			en numéro héxadécimal avec dechex et on met la lettre en majuscule*/
+			$result .= '<td>' . strtoupper(dechex($numero_decimal)) ."</td>";
+			
+			/*Avec la méthode printf, on fait un switch case selon les valeurs
+			du numéro décimal*/
+			switch($numero_decimal) {
+				case 10: $result .='<td>';
+					$result .= sprintf('A');
+					$result .= "</td>";
+					break;
+				case 11: $result .='<td>';
+					$result .= sprintf('B');
+					$result .="</td>";
+					break;
+				case 12: $result .='<td>';
+					$result .= sprintf('C');
+					$result .="</td>";
+					break;
+				case 13: $result .='<td>';
+					$result .= sprintf('D');
+					$result .="</td>";
+					break;
+				case 14: $result .='<td>';
+					$result .= sprintf('E');
+					$result .="</td>";
+					break;
+				case 15: $result .='<td>';
+					$result .= sprintf('F');
+					$result .="</td>";
+					break;
+			}
+			//On ferme notre ligne
+			$result .="</tr>\n";
+		}
+		
+		/*Si le numéro décimal est inférieur à 9
+		alors c'est le même donc on l'écrit dans deux cases
+		et on ferme notre ligne*/
+		else{
+			$result .='<td>' . $numero_decimal ."</td>
+				<td>";
+			$result .= sprintf("%d", $numero_decimal);
+			$result .= "</td>
+			</tr>\n";
+		}
+	}
+	
+	//On ferme notre tableau
+	$result .= "</table>\n";
+	
+	return $result;
+}
+
+function table($key=10){
+	
+	/*On ouvre un tableau et on ajoute le caractère 'X'
+	dans la premiere case car on veut faire un tableau
+	à double entrée*/
+	$table = "<table class=\"quotient\">\n
+			<tr>\n
+				<th>X</th>\n";
+	
+	/*Pour x allant de 1 à la valeur demandée, on écrit
+	la première ligne de th*/
+	for($x=1; $x<=$key; $x++){
+	$table .= '<th>'.$x."</th>\n";
+	}
+	
+	//On ferme notre ligne
+	$table .= "</tr>\n";
+	
+	
+	/*i représente la coordonnée de la ligne*/
+	for($i=1; $i<=$key; $i++){
+		
+		//On ouvre une ligne et écrit le numéro de ligne associé
+		$table .= '<tr>
+			<th>'.$i."</th>\n";
+			
+		/*j représente la coordonnée de la colonne*/
+		for($j=1; $j<=$key; $j++) {	
+			/*On écrit dans une nouvelle case le 
+			résultat de la multiplication de i par j*/
+			$table .= '<td>' . $i*$j . "</td>";
+		}
+		
+		//On ferme la ligne
+		$table .= "</tr>\n";
+	}
+	//On ferme notre tableau
+	$table .= "</table>\n";
+	return $table;
+}
+
+function printTD5(){
+	$TD5 = '<p>Ex. 1</p>';
+	$TD5 .= helloToKey(10);
+	$TD5 .= '<p>Ex. 2</p>';
+	$TD5 .= getDateFr();
+	$TD5 .= '<p>Ex. 3</p>';
+	$TD5 .= decToHex(15);
+	$TD5 .= '<p>Ex. 4</p>';
+	$TD5 .= table();
+	
+	return $TD5;
+}
+?>

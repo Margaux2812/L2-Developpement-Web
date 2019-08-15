@@ -1,0 +1,303 @@
+@font-face{
+	font-family: westgate;
+	src: url(Polices/The_West_Gate.ttf);
+}
+@font-face{
+	font-family: ananda;
+	src: url(Polices/Ananda_Personal_Use.ttf);
+}
+@font-face{
+	font-family: champ;
+	src: url(Polices/champ.ttf);
+}
+	
+#body{
+	margin: 0;
+	padding: 0;
+}
+
+/*En-tete*/
+	
+	header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		height: 80px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 10px;
+		align-items: flex-start;
+		padding: 0;
+	}
+	#logo{
+		float: left;
+		width: 15%;
+		height: 80px;
+		padding: 0;
+		background-color: #757575;
+		border-radius: 15px 0 0 15px ;
+	}
+	#logo figure{
+		max-height: 80px;
+		margin: 0;
+		padding: 0;
+	}
+	#logo figcaption{
+		font-family: sans-serif;
+		font-size: 10px;
+		color:#C1C1C1;
+		text-align: center;
+		margin-top: -20px;
+		font-style: italic;
+	}
+	nav{
+		width: 85%;
+		align-self: flex-end;
+		height: 80px;
+		text-align: center;
+		list-style: none;
+		margin: auto;
+		background-color: #757575;
+		border-radius: 0 15px 15px 0;
+	}
+	
+	nav ul{
+		height: 80px;
+		padding:0;
+		margin:0;
+		overflow: hidden;
+	}
+	
+	nav li{
+		display: inline-block;
+		position: relative;
+		max-height: 80px;
+		margin: 0 5px;
+		padding: 0 5px;
+		border-top: 5px solid #757575;
+	}
+	
+	nav a{
+		color: white;
+		text-decoration: none;
+		display: block;
+		height: 80px;
+		width: 100%;
+		padding-top: 20px;
+		font-family: westgate;
+		font-size: 30px;
+	}
+	nav a:hover{
+		color: #00BD50;
+	}
+	nav li:hover{
+		background-color: white;
+		border-top: 5px solid red;	
+	}
+/*Menu interne*/
+#intern{
+	float: left;
+	width: 200px;
+	height: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	background: none;
+	position: fixed;
+}
+#intern ul{
+	height: 100%;
+	width: 100%;
+	list-style: none;
+	border-radius: 5px;
+	border: 2px dotted #CEEEFD;
+	padding-bottom: 10px;
+}
+#intern li:hover{
+	border: 0;
+}
+#intern #menu{
+	list-style: none;
+	border-bottom: 2px dotted #CEEEFD;
+	text-align: center;
+	font-family: ananda;
+	font-size: 25px;
+	margin: 5px 0;
+	width: 100%;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+#intern #exn0, #exn1, #exn2, #exn3, #exn4, #exn5, #exn6{
+	background-repeat: no-repeat;
+	text-indent: 30px;
+	height: 32px;
+	font-family: champ;
+	font-size: 22px;
+	margin: 5px 0;
+	border: 0;
+	width: 100%;
+	background-position: 20px;
+}
+#intern #exn0{
+	background-image: url(Images/icon-php.png);
+	padding-top: 10px;
+	background-position: 20px 10px;
+}
+#intern #exn1{
+	background-image: url(Images/icon-loop.png);
+}
+#intern #exn2{
+	background-image: url(Images/icon-date.png);
+}
+#intern #exn3{
+	background-image: url(Images/icon-function.png);
+}
+#intern #exn4{
+	background-image: url(Images/icon-multiplicate.png);
+}
+#intern #exn5{
+	background-image: url(Images/icon-convert.png);
+}
+#intern #exn6{
+	background-image: url(Images/icon-binary.png);
+}
+#intern a{
+	all: initial;
+	font-family: champ;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+#intern a:hover{
+	color: #CEEEFD;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+/*Exercices*/
+#contenu{
+	margin-left: 230px;
+	margin-right: 20px;
+}
+h1{
+	font-family: champ;
+	font-size: 50px;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+#titre{
+	border: 1px solid black;
+}
+h2{
+	font-family: champ;
+	font-size: 35px;
+	margin: 5px;
+	padding-left: 20px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+h3{
+	font-family: champ;
+	font-size: 28px;
+	font-weight: normal;
+	text-decoration: underline;
+}
+p{
+	font-family: champ;
+	font-size: 20px;
+}
+
+section{
+	height: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+
+li{
+	font-family: champ;
+	font-size: 17px;
+}
+table{
+	margin: 10px 0;
+}
+tr{
+	padding: 0;
+}
+td{
+	font-family: champ;
+	font-size: 17px;
+	text-align: center;
+	padding: 5px 5px;
+	font-weight: normal;
+	border: 1px solid black;
+	margin: 0;
+}
+th{
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: champ;
+	font-size: 17px;
+	text-align: center;
+	border: 1px solid black;
+	padding: 5px 5px;
+}
+/*Exercice n°0*/
+#Ex0{
+	background-color: #ccf2ff;
+}
+#Ex0 a{
+	font-family: champ;
+	font-size: 17px;
+	text-decoration: none;
+	color: black;
+}
+#Ex0 a:hover{
+	color: #000099;
+}
+/*Exercice n°1*/
+#Ex1{
+	background-color: #99ff99;
+}
+#Ex1 li{
+	list-style-image: url(Images/smiley-face.png);
+}
+/*Exercice n°2*/
+#Ex2{
+	background-color: #d5ff80;
+}
+/*Exercice n°3*/
+#Ex3{
+	background-color: #ffbb99;
+}
+/*Exercice n°4*/
+#Ex4{
+	background-color: #ffb3e6;
+}
+/*Exercice n°5*/
+#Ex5{
+	background-color: #b3b3ff;
+}
+/*Exercice n°6*/
+#Ex6{
+	background-color: #f2f2f2;
+}
+/*Footer*/
+	footer{
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+			text-align: right;
+			}
+	footer p{
+		text-align: right;
+	}
+	footer a{
+		background-color: #74C1AE; 
+		border-radius: 5px; 
+		font-family: champ; 
+		padding: 3px 3px; 
+		color: black;
+		text-decoration: none;
+	}

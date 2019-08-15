@@ -1,0 +1,134 @@
+<?php
+
+include('util.inc.php');
+
+$number = nbVisites();
+
+if(!empty($_POST["connexion"])) {
+	/* Regarder s'il y a tous les champs */
+	foreach($_POST as $key=>$value) {
+		if(empty($_POST[$key])) {
+		$erreur = "Tous les champs sont requis";
+		break;
+		}
+	}
+	
+	if(!isset($erreur)){
+		if(dontmatch($_POST['login'], $_POST['pass'])){
+			$erreur = 'Login ou mot de passe incorrect';
+		}else{
+			
+			$infos = recuperer(htmlspecialchars($_POST['login']));
+			
+			$login = $infos['login'];
+			$name = $infos['name'];
+			$forname = $infos['forname'];
+		}
+	}
+		
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PHP - fonctions, constantes, tableaux et constructions multifichiers</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+	<?php
+		include('header.inc.php');
+	?>
+
+<nav id="intern">
+	<ul>
+		<li id="menu">Menu</li>
+		<li id="exn1"><a href="#ex1">Exercice n°1</a></li>
+		<li id="exn2"><a href="#ex2">Exercice n°2</a></li>
+		<li id="exn3"><a href="#ex3">Exercice n°3</a></li>
+	</ul>
+</nav>
+
+<div id="contenu">
+	
+	<section id="titre">
+		<h1>TD10 : fichiers et dossiers</h1>
+	</section>
+	
+	<section id="ex1">
+		<h2>Exercice 1 : compteur de « hits » et fichier</h2>
+		
+		<p>Il a été demandé de réaliser un compteur de fréquentation avec un fichier texte. le compteur comptabilise le
+		nombre de «hits» sur les pages du site et est sauvegardé dans un fichier texte. Le nombre de visites est écrit dans le footer
+		de la page</p>
+		
+	</section>
+	
+	<section id="ex2">
+	
+		<h2>Exercice 2 : affichage aléatoire et dossier</h2>
+		
+		<div id='cadre'>
+			<figure>
+			<?php
+				echo random_img();
+			?>
+			</figure>
+		</div>
+		
+	</section>
+	
+	<section id="ex3">
+		<h2>Exercice 3 : fichier CSV</h2>
+		
+		<p>Il a été créé un fichier CSV contenant les identifiants, mots de passe cryptés, prénoms et noms des
+		utilisateurs autorisés à se connecter au site.
+		Vérifiez si le votre est valide !
+		</p>
+		
+		<div id='conteneur_form'>
+			<form method="post" action='index.php#ex3' id="login_form">
+					<table>
+						<tr>
+							<td class='labels'> <label for="login">Login</label> </td>
+							<td class='labels'> <label for="pass">Mot de passe</label> </td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="login" id="login" size="15"/></td>
+							<td><input type="password" name="pass" id="pass" size="15"/></td>
+							<td class='button'><input type="submit" name="connexion" value="Connexion"/></td>
+						</tr>
+						<?php if(!empty($erreur)) {?>
+						<tr class="erreur">
+							<td colspan='3'><?php echo $erreur;	?></td>
+						</tr>
+						<?php }?>
+						<?php if(isset($login)){?>
+						<tr class="success">
+							<td colspan='3'><?php echo 'Vous êtes '.$forname.' '.$name.'.';	?></td>
+						</tr>
+						<?php }?>
+					</table>
+			</form>
+		</div>
+		
+		<div id='login_working'>
+			<p id='note'>PS: Voici un login et un mot de passe étant autorisés :<br>
+			Login: shawking (il n'est pas sensible à la casse)<br>
+			Mot de passe: Physics<br>
+			&#9786;
+			</p>
+		</div>
+		
+	</section>
+	
+</div>
+
+<footer>
+	<p id="bottom"> <a href="#">Retour en haut de page</a></p>
+	<p>Nombre de visites : <?php echo $number; ?></p>
+	<p class="small">&copy; Margaux VAILLANT L2-M</p>
+</footer>
+</body>
+</html>

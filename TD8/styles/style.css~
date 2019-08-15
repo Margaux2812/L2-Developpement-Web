@@ -1,0 +1,507 @@
+@font-face{
+	font-family: westgate;
+	src: url(../../Polices/The_West_Gate.ttf);
+}
+@font-face{
+	font-family: ananda;
+	src: url(../../Polices/Ananda_Personal_Use.ttf);
+}
+@font-face{
+	font-family: champ;
+	src: url(../../Polices/champ.ttf);
+}
+@font-face{
+	font-family: pixel;
+	src: url(../../Polices/04B_30__.TTF);
+}
+
+#body{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/*Partout*/
+
+	a:hover{
+		cursor: pointer;
+	}
+
+
+/*En-tete*/
+	
+	header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		height: 80px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 10px;
+		align-items: flex-start;
+		padding: 0;
+		overflow: visible;
+		background-color: #757575;
+		border-radius: 5px; 
+	}
+
+/*----------------------------------------------------------LANGUES----------------------------------------------------------*/	
+	
+	#langues{
+		height: 80px;
+		width: auto;
+		border-collapse: collapse;
+		background-color: #757575;
+	}
+	
+	#langues tr{
+		background-color: #757575;
+	}
+	
+	#langues td{
+		padding: 0;
+		height: 25px;
+		background-color: #757575;
+	}
+
+/*----------------------------------------------------------HEADING-CALENDAR----------------------------------------------------------*/	
+	
+	#headingCalendar{
+		float: left;
+		width: 175px;
+		max-height: 80px;
+		padding: 0;
+		overflow: hidden;
+		background-color: #757575;
+		border-radius: 5px;
+	}
+	
+	#headingCalendar table{
+		max-height: 80px;
+		margin: auto;
+		background-color: #757575;
+		border-collapse: collapse;
+		overflow: hidden;
+	}	
+	
+	#headingCalendar td, #headingCalendar th{
+		height: 10px;
+		font-size: 10px;
+		width: 14%;
+		padding: 0;
+		color: black;
+		background-color: white;
+		border: 1px solid black;
+		text-align: center;
+		font-family: champ;
+		border-style: dotted;
+	}
+	
+	#headingCalendar th{
+		height: 0;
+		font-size: 0;
+	}	
+	
+	#headingCalendar .month{
+		font-size: 10px;
+	}	
+	
+	#headingCalendar .days{
+		height: 0;
+		margin: 0;
+		display: none;
+	}	
+	#headingCalendar tr{
+		height: 10px;
+		width: 8px;
+	}
+	
+	#headingCalendar .empty{
+		background-color: #f2f2f2;
+	}
+
+	#headingCalendar .jourJ{
+		background-color: #cc0000;
+		color: white;
+	}
+	
+/*----------------------------------------------------------MENU-PRINCIPAL----------------------------------------------------------*/	
+	
+	#princ{
+		width: 85%;
+		align-self: flex-end;
+		height: 80px;
+		text-align: center;
+		list-style: none;
+		margin: auto;
+		background-color: #757575;
+		border-radius: 0 5px 5px 0;
+		overflow: visible;
+	}
+	
+	#princ ul{
+		height: 80px;
+		padding:0;
+		margin: 0 5px;
+		overflow: visible;
+		display: flex;
+	}
+	
+	#princ li{
+		width: 100px;
+		display: inline-block;
+		position: relative;
+		max-height: 80px;
+		padding: 0 5px;
+		margin: 0;
+		padding-top: 5px;
+	}
+	
+	#princ a{
+		color: white;
+		text-decoration: none;
+		display: block;
+		height: 80px;
+		width: 100%;
+		font-family: champ;
+		font-size: 30px;
+		vertical-align: middle;
+		padding-top: 15px;
+	}
+	#princ a:hover{
+		color: #00BD50;
+	}
+	#princ li:hover{
+		background-color: white;
+		border-top: 5px solid red;	
+		padding-top: 0;
+	}
+
+	#encours{
+		background-color: white;	
+	}
+	
+	#encours a{
+		color: #00BD50;
+	}
+/*Menu interne*/
+#intern{
+	float: left;
+	width: 200px;
+	height: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	background: none;
+	position: fixed;
+	border-radius: 5px;
+	border: 2px dotted #CEEEFD;
+}
+#intern ul{
+	height: 100%;
+	width: 100%;
+	list-style: none;
+	padding-bottom: 10px;
+	padding-left: 0;
+	margin: 0;
+}
+#intern li:hover{
+	border: 0;
+}
+
+#intern li{
+	text-align: center;
+}
+#intern #menu{
+	list-style: none;
+	border-bottom: 2px dotted #CEEEFD;
+	text-align: center;
+	font-family: ananda;
+	font-size: 25px;
+	margin: 5px 0;
+	width: 100%;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+#intern #exn1, #exn2, #exn3, #exn4, #exn5{
+	background-repeat: no-repeat;
+	text-indent: 30px;
+	height: 32px;
+	font-family: champ;
+	font-size: 22px;
+	margin: 5px 0;
+	border: 0;
+	width: 100%;
+}
+#intern #exn1{
+	background-image: url(../Images/ex1.png);
+	padding-top: 10px;
+	background-position: 20px 10px;
+}
+#intern #exn2{
+	background-image: url(../Images/ex2.png);
+	background-position: 20px 10px;
+}
+#intern #exn3{
+	background-image: url(../Images/ex3.png);
+	background-position: 20px;
+}
+#intern #exn4{
+	background-image: url(../Images/ex4.png);
+	background-position: 20px;
+}
+#intern #exn5{
+	background-image: url(../Images/ex5.png);
+	background-position: 20px;
+}
+#intern a{
+	all: initial;
+	font-family: champ;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+#intern a:hover{
+	color: #CEEEFD;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	cursor: pointer;
+}
+
+/*Contenu*/
+#contenu{
+	height: auto;
+	margin-left: 230px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+
+h1{
+	font-family: champ;
+	font-size: 50px;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+h2{
+	font-family: champ;
+	font-size: 35px;
+	margin: 5px;
+	padding: 5px 20px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+p{
+	text-indent: 20px;
+	font-family: champ;
+	font-size: 20px;
+}
+
+section{
+	height: 50%;
+	border-radius: 5px;	
+	margin: 10px 0;
+	padding: 10px 15px;
+}
+
+#titre{
+	border: 1px solid black;
+}
+
+#ex1, #ex2, #ex3, #ex4, #ex5{
+	padding: 5px; 
+}
+
+/*Exercice 1*/
+
+#ex1 li{
+	list-style-image: url(../Images/smiley-face.png);
+	font-family: champ;
+	font-size: 18px;
+}
+#ex1 td, #ex1 th{
+	font-family: champ;
+	font-size: 18px;
+	text-align: center;
+	padding: 3px;
+}
+
+#ex1 table{
+	border: 1px dotted black;
+	margin-left: 40px;
+}
+
+#ex1 td, th{
+	border: 1px solid black;
+}
+#ex1 td{
+	background-color: #e6e6e6;
+}
+
+/*Exercice 2*/
+
+/*Exercice 3*/
+
+#ex3 table{
+	margin: auto;
+	text-align: center; 
+	border-collapse: collapse;
+}
+
+#ex3 td, #ex3 th{
+	font-family: champ;
+	font-size: 20px;
+	padding: 10px 10px;
+}	
+
+#ex3 li a{
+	font-family: champ;
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+#ex3 li:first-child{
+	list-style-image: url(Images/hot.png);
+}	
+
+#ex3 li:last-child{
+	list-style-image: url(Images/cold.png);
+}
+
+#ex3 input[type=submit], #ex3 option, #ex3 select{
+	font-family: champ;
+	font-size: 15px;
+	padding: 3px 3px;
+}	
+
+#ex3 form p{
+	text-align: center;
+}
+
+/*Exercice 4*/
+
+#ex4 .month{
+	font-size: 30px;
+	background-color: white;
+	color: black;
+}
+
+#ex4 table{
+	border: 1px dotted black ;
+	margin: auto;
+	padding: 5px;
+	max-width: 100%;
+	overflow: hidden;
+}
+#ex4 td, th{
+	font-family: champ;
+	border: 1px solid black;
+	padding: 5px;
+	font-size: 18px;
+	text-align: center;
+	color: black;
+	background-color: white;
+}
+
+#ex4 th{
+	background-color: #8c8c8c;
+	color: white;
+}
+
+#ex4 .empty{
+	background-color: #f2f2f2;
+}
+
+#ex4 .jourJ{
+		border: 2px solid #990000;
+		background-color: #cc0000;
+		color: white;
+}
+
+#ex4 .weekend{
+	color: #cc0000;
+}
+
+#calendar{
+	table-layout: fixed;
+	border: 1px dotted black ;
+	margin: auto;
+	padding: 5px;
+	width: 100%;
+}
+
+#calendar tr{
+	width: 100%;
+	vertical-align: top;
+}
+
+#calendar td table{
+	width: 100%;
+	table-layout: fixed;
+}
+
+#calendar td table th{
+	font-family: champ;
+	font-size: 100%;
+	padding: 0.75% 0.75%;
+	overflow: hidden;
+	color: white;
+	background-color: #8c8c8c;
+}
+
+#calendar td table #month{
+	font-size: 1.5vw;
+	padding: 0.07% 0.75%;
+	color: black;
+	background-color: white;
+}
+
+#calendar td table td{
+	font-family: champ;
+	border: 1px solid black;
+	width: 100%;
+	padding: 2.75% 0.75%;
+	font-size: 100%;
+	text-align: center;
+	color: black;
+	background-color: white;
+}
+#calendar td table .month{
+	color: black;
+	background-color: white;
+	font-size: 200%;
+}
+
+#calendar table .empty{
+	background-color: #f2f2f2;
+}
+
+#calendar table .jourJ{
+		border: 2px solid #990000;
+		background-color: #cc0000;
+		color: white;
+}
+
+#calendar table .weekend{
+	color: #cc0000;
+}
+
+/*Footer*/
+	footer{
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+			text-align: right;
+			}
+	footer p{
+		text-align: right;
+	}
+	footer a{
+		background-color: #74C1AE; 
+		border-radius: 5px; 
+		font-family: champ; 
+		padding: 3px 3px; 
+		color: black;
+		text-decoration: none;
+	}

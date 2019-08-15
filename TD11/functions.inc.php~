@@ -1,0 +1,66 @@
+<?php 
+function dontmatch($login, $pass){
+
+/*On verifie que l'identifiant existe (on ne fais pas attention à la casse)*/
+	if(exists(strtoupper($login))){
+		try{	
+			/*On parcourt le fichier .csv pour trouver l'identifiant et stocker le mdp trouvé*/
+			$row = 1;
+			if (($handle = fopen("logins_autorises.csv", "a+")) !== FALSE) {
+				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+					$num = count($data);
+					$row++;
+					if($data[0]==strtoupper($login)){
+						$mdp_trouve = $data[3];
+						break;
+					}
+				}
+				fclose($handle);
+			}
+			
+			/*password_verify nous dira si les mots de passe hachés correspondent
+			donc comme la fonction s'appelle dontmatch, on envoie la negation*/
+			return !$isPasswordCorrect = password_verify($pass, $mdp_trouve);
+			
+		}
+		catch(Exception $e){
+			return "Erreur";
+		}
+	}
+	else{
+		return TRUE;
+	}
+}
+
+function recuperer($login_recherche){
+	try{		
+		$row = 1;
+		if (($handle = fopen("logins_autorises.csv", "a+")) !== FALSE) {
+			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+				$num = count($data);
+				$row++;
+				
+				/*Si on a trouvé l'dentifiant on recupere toutes ses informations*/
+				if($data[0]==strtoupper($login_recherche)){
+					$name = $data[1];
+					$forname = $data[2];
+					break;
+				}
+			}
+			fclose($handle);
+		}
+				$infos = array(
+					'login' => $login_recherche,
+					'name' => $name,
+					'forname' => $forname
+					);
+					
+				return $infos;
+		
+	}
+	catch(Exception $e){
+		return 0;
+	}
+}
+
+?>

@@ -1,0 +1,370 @@
+@font-face{
+	font-family: westgate;
+	src: url(../Polices/The_West_Gate.ttf);
+}
+@font-face{
+	font-family: ananda;
+	src: url(../Polices/Ananda_Personal_Use.ttf);
+}
+@font-face{
+	font-family: champ;
+	src: url(../Polices/champ.ttf);
+}
+@font-face{
+	font-family: pixel;
+	src: url(../Polices/04B_30__.TTF);
+}
+@font-face{
+	font-family: tahu;
+	src: url(polices/Tahu.ttf);
+}
+
+#body{
+	margin: 0;
+	padding: 0;
+}
+
+/*En-tete*/
+	
+	header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		height: 80px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 10px;
+		align-items: flex-start;
+		padding: 0;
+		overflow: visible;
+	}
+
+	#logo{
+		float: left;
+		width: 15%;
+		height: 80px;
+		padding: 0;
+		background-color: #757575;
+		border-radius: 15px 0 0 15px ;
+	}
+	#logo figure{
+		max-height: 80px;
+		margin: 0;
+		padding: 0;
+	}
+	#logo figcaption{
+		font-family: sans-serif;
+		font-size: 10px;
+		color:#C1C1C1;
+		text-align: center;
+		margin-top: -20px;
+		font-style: italic;
+	}
+	#princ{
+		width: 85%;
+		align-self: flex-end;
+		height: 80px;
+		text-align: center;
+		list-style: none;
+		margin: auto;
+		background-color: #757575;
+		border-radius: 0 5px 5px 0;
+		overflow: visible;
+	}
+	
+	#princ ul{
+		height: 80px;
+		padding:0;
+		margin: 0 5px;
+		overflow: visible;
+		display: flex;
+	}
+	
+	#princ li{
+		width: 100px;
+		display: inline-block;
+		position: relative;
+		max-height: 80px;
+		padding: 0 5px;
+		margin: 0;
+		padding-top: 5px;
+	}
+	
+	#princ a{
+		color: white;
+		text-decoration: none;
+		display: block;
+		height: 80px;
+		width: 100%;
+		font-family: champ;
+		font-size: 30px;
+		vertical-align: middle;
+		padding-top: 15px;
+	}
+	#princ a:hover{
+		color: #00BD50;
+	}
+	#princ li:hover{
+		background-color: white;
+		border-top: 5px solid red;	
+		padding-top: 0;
+	}
+
+	#encours{
+		background-color: white;	
+	}
+	
+	#encours a{
+		color: #00BD50;
+	}
+
+/*Menu interne*/
+#intern{
+	float: left;
+	width: 200px;
+	height: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	background: none;
+	position: fixed;
+}
+#intern ul{
+	height: 100%;
+	width: 100%;
+	list-style: none;
+	border-radius: 5px;
+	border: 2px dotted #CEEEFD;
+	padding-bottom: 10px;
+	padding-left: 0;
+}
+#intern li:hover{
+	border: 0;
+}
+
+#intern li{
+	text-align: center;
+}
+#intern #menu{
+	list-style: none;
+	border-bottom: 2px dotted #CEEEFD;
+	text-align: center;
+	font-family: ananda;
+	font-size: 25px;
+	margin: 5px 0;
+	width: 100%;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+#intern #exn1, #exn2, #exn3{
+	background-repeat: no-repeat;
+	text-indent: 30px;
+	height: 32px;
+	font-family: champ;
+	font-size: 22px;
+	margin: 5px 0;
+	border: 0;
+	width: 100%;
+}
+#intern #exn1{
+	background-image: url(images/ex1.png);
+	padding-top: 10px;
+	background-position: 20px 10px;
+}
+#intern #exn2{
+	background-image: url(images/ex2.png);
+	background-position: 20px;
+}
+#intern #exn3{
+	background-image: url(images/ex3.png);
+	background-position: 20px;
+}
+
+#intern a{
+	all: initial;
+	font-family: champ;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+#intern a:hover{
+	color: #CEEEFD;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+/*Contenu*/
+#contenu{
+	height: auto;
+	margin-left: 230px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+h1{
+	font-family: champ;
+	font-size: 50px;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+}
+h2{
+	font-family: champ;
+	font-size: 35px;
+	margin: 5px;
+	padding: 5px 20px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+p{
+	text-indent: 20px;
+	font-family: champ;
+	font-size: 20px;
+}
+
+section{
+	height: 50%;
+	border-radius: 5px;	
+	margin: 10px 0;
+	padding: 10px 15px;
+}
+#titre{
+	border: 1px solid black;
+}
+
+/*Exercice 1*/
+#ex1{
+	background-color: #9fdf9f;
+	padding: 5px; 
+}
+
+/*Exercice 2*/
+#ex2{
+	background-color: #79d279;
+	padding: 5px; 
+}
+
+#cadre{
+	text-align: center;
+}
+
+#cadre figure{
+	display: inline-block;
+	border-radius: 5px;
+}
+
+#cadre figcaption{
+	font-family: champ;
+	font-size: 20px;
+	font-style: italic;
+}
+
+/*Exercice 3*/
+#ex3{
+	background-color: #53c653;
+	padding: 5px;
+}
+
+#conteneur_form{
+	text-align: center;
+}
+
+#login_form{
+	display: inline-block;
+}
+
+#login_form td{
+	border: 5px solid transparent;
+}
+
+.labels{
+	font-family: champ;
+	font-size: 20px;
+}
+
+#login, #pass{
+	border-radius: 3px;
+	padding: 3px;
+	border: 1px solid black;
+}
+
+input[type=submit]{
+	height: 30px;
+	padding: 5px;
+	font-family: champ;
+	font-size: 15px;
+	border-radius: 5px;
+	border: 0;
+	background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
+	color: #757575;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+input[type=submit]:hover{
+	background-image: linear-gradient(top,#f8f8f8,#f1f1f1);
+	background-color: white;
+	border: 1px solid #c6c6c6;
+	color: black;
+}
+
+.erreur{
+	margin: 5px auto;
+	background-image: linear-gradient(#ff9999, #e60000);
+	border-radius: 5px;
+	padding: 5px;
+	font-family: roboto;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+}
+
+.success{
+	background-image: linear-gradient(#00e600, #006600);
+	margin: 5px auto;
+	border-radius: 5px;
+	padding: 5px;
+	font-family: roboto;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+}
+
+#login_working{
+	background-image: url('images/note.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 100%;
+	margin: 30px 0;
+	text-align: center;
+}
+
+#note{
+	font-family: tahu;
+	font-size: 25px;
+	text-indent: 0;
+	margin: 0;
+	padding: 30px 0;
+	height: 200px;
+	display: inline-block;
+}
+
+/*Footer*/
+	footer{
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+			text-align: right;
+			}
+	footer p{
+		text-align: right;
+	}
+	footer a{
+		background-color: #74C1AE; 
+		border-radius: 5px; 
+		font-family: champ; 
+		padding: 3px 3px; 
+		color: black;
+		text-decoration: none;
+	}

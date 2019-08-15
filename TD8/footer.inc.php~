@@ -1,0 +1,12 @@
+<footer>
+	<p id="bottom"> <a href="#"><?php 
+		if(isset($_GET['lang'])){
+			echo $lang['UP'];
+		}else{
+			echo'Retour en haut de page';		
+		}
+		
+		?></a></p>
+	
+	<p class="small">&copy; Margaux VAILLANT L2-M</p>
+</footer>

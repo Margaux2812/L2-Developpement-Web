@@ -1,0 +1,168 @@
+<?php
+
+/*On ouvre le fichier (s'il n'existe opas on le crée) et la valeur
+	du fichier devient notre nombre. On l'incrémente puis on réécrit dans le fichier.
+	On retourne la valeur du nombre.*/
+function nbVisites(){
+	
+	$filename = "hits.txt"; 
+	$file = fopen($filename, 'a+');
+	$number = file_get_contents($filename);
+	fclose($file);
+
+	$number += 1;
+
+	$file = fopen($filename, "w");
+	fwrite($file, $number);
+	fclose($file);
+	
+	return($number);
+}
+
+/*On ouvre le fichier csv des logins autorisés
+On met le login en majuscule comme on l'a enregistré en majuscule
+afin qu'il ne soit pas sensible à la casse*/
+function exists($login_recherche){
+	try{
+		$row = 1;
+		if (($handle = fopen("logins_autorises.csv", "a+")) !== FALSE) {
+			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+				/*Tant qu'on arrive pas à la fin, si on trouve le login recherché, alors on retourne 1*/
+				$num = count($data);
+				$row++;
+				
+				if($data[0]==strtoupper($login_recherche)){
+					return TRUE;
+					break;
+				}
+			}
+			fclose($handle);
+		}
+		
+	}
+	catch(Exception $e){
+		return "Erreur";
+	}
+}
+
+/*On verifie que l'identifiant existe (on ne fais pas attention à la casse)
+On parcourt le fichier .csv pour trouver l'identifiant et stocker le mdp trouvé
+Enfin password_verify nous dira si les mots de passe hachés correspondent
+donc comme la fonction s'appelle dontmatch, on envoie la negation*/
+function dontmatch($login, $pass){
+
+	if(exists(strtoupper($login))){
+		try{	
+			
+			$row = 1;
+			if (($handle = fopen("logins_autorises.csv", "a+")) !== FALSE) {
+				while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+					$num = count($data);
+					$row++;
+					if($data[0]==strtoupper($login)){
+						$mdp_trouve = $data[3];
+						break;
+					}
+				}
+				fclose($handle);
+			}
+			
+			return !$isPasswordCorrect = password_verify($pass, $mdp_trouve);
+			
+		}
+		catch(Exception $e){
+			return "Erreur";
+		}
+	}
+	else{
+		return TRUE;
+	}
+}
+
+/*Si on a trouvé l'dentifiant on recupere toutes ses informations*/
+function recuperer($login_recherche){
+	try{		
+		$row = 1;
+		if (($handle = fopen("logins_autorises.csv", "a+")) !== FALSE) {
+			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+				$num = count($data);
+				$row++;
+				
+				
+				if($data[0]==strtoupper($login_recherche)){
+					$name = $data[1];
+					$forname = $data[2];
+					break;
+				}
+			}
+			fclose($handle);
+		}
+				$infos = array(
+					'login' => $login_recherche,
+					'name' => $name,
+					'forname' => $forname
+					);
+					
+				return $infos;
+		
+	}
+	catch(Exception $e){
+		return 0;
+	}
+}
+
+/*On veut respecter le ratio de l'image de base tout en la forcant 
+à rester dans un cadre de 622px * 350px*/
+function resize($img){
+	
+	$dimensions = getimagesize($img);
+
+	$ratio_w = $dimensions[0] / 622; // 622px est la largeur maximale et 350px la hauteur maximale
+	$ratio_h = $dimensions[1] / 350;
+
+	if ($ratio_w > $ratio_h)
+	{
+		$newh = round($dimensions[1] / $ratio_w);
+		$neww = 622;
+	}
+	else
+	{
+		$neww = round($dimensions[0]/ $ratio_h);
+		$newh = 350;
+	}
+	 $new_dimensions = array(
+		'width' => $neww,
+		'height' =>$newh
+	 );
+	 
+	 return $new_dimensions;
+}
+
+/*On parcourt notre dossier 'photos', on retaille l'image,
+on prend le nom de l'image en remplacant les underscore avec des espaces
+et on enleve l'extension*/
+function random_img(){
+	
+	$allfiles = scandir('photos');
+	
+	/*On ne prend pas les dossiers . et ..*/
+	$index = rand(2, 7);
+	$image = 'photos/'.$allfiles[$index];
+	$new_dimensions = resize($image);
+	$img_fullname = str_replace('_', ' ', $allfiles[$index]);
+	$temp = explode('.', $img_fullname);
+	$img_name = $temp[0];
+	
+	/*On utilise htmlspecialchars car une de nos photos à &eacute; dans son
+	nom et on ne veut pas que la recherche soit modifiée avec un é*/
+	
+	$img_tag = '<img src="'.htmlspecialchars($image).'" alt="'.$img_name.'" height="'.$new_dimensions['height'].'" width="'.$new_dimensions['width'].'">';
+	$result = array(
+		'imgtag' => $img_tag,
+		'imgname' => $img_name	
+	);	
+	
+	
+	return $result;
+}
+?>

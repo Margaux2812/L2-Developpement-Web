@@ -1,0 +1,295 @@
+@font-face{
+	font-family: westgate;
+	src: url(Polices/The_West_Gate.ttf);
+}
+@font-face{
+	font-family: ananda;
+	src: url(Polices/Ananda_Personal_Use.ttf);
+}
+@font-face{
+	font-family: champ;
+	src: url(Polices/champ.ttf);
+}
+@font-face{
+	font-family: pixel;
+	src: url(Polices/04B_30__.TTF);
+}
+
+#body{
+	margin: 0;
+	padding: 0;
+}
+
+/*En-tete*/
+	
+	header{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		height: 80px;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 10px;
+		align-items: flex-start;
+		padding: 0;
+		overflow: visible;
+	}
+
+	#logo{
+		float: left;
+		width: 15%;
+		height: 80px;
+		padding: 0;
+		background-color: #757575;
+		border-radius: 15px 0 0 15px ;
+	}
+	#logo figure{
+		max-height: 80px;
+		margin: 0;
+		padding: 0;
+	}
+	#logo figcaption{
+		font-family: sans-serif;
+		font-size: 10px;
+		color:#C1C1C1;
+		text-align: center;
+		margin-top: -20px;
+		font-style: italic;
+	}
+	nav{
+		width: 85%;
+		align-self: flex-end;
+		height: 80px;
+		text-align: center;
+		list-style: none;
+		margin: auto;
+		background-color: #757575;
+		border-radius: 0 15px 15px 0;
+		overflow: visible;
+	}
+	
+	nav ul{
+		height: 80px;
+		padding:0;
+		margin:0;
+		overflow: visible;
+	}
+	
+	nav li{
+		display: inline-block;
+		position: relative;
+		max-height: 80px;
+		margin: 0 5px;
+		padding: 0 5px;
+		border-top: 5px solid #757575;
+	}
+	
+	nav a{
+		color: white;
+		text-decoration: none;
+		display: block;
+		height: 80px;
+		width: 100%;
+		padding-top: 20px;
+		font-family: westgate;
+		font-size: 30px;
+	}
+	nav a:hover{
+		color: #00BD50;
+	}
+	nav li:hover{
+		background-color: white;
+		border-top: 5px solid red;	
+	}
+
+/*Intro*/
+	#Intro{
+		background-color: #CEEEFD;
+		border-radius: 15px 15px 0 0;
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-top: 10px;
+	}
+	
+	h1{
+		font-family: ananda;
+		font-size: 50px;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+	#Intro img{
+		display: block;
+		margin: auto;
+	}
+	#Intro p{
+		font-family: champ;
+		font-size: 20px;
+		text-align: justify;
+		margin: 0;
+		padding: 15px 200px;
+		text-indent: 20px;
+	}
+	
+	#Module{
+		border-radius: 0 0 15px 15px;
+		border-bottom: 2px solid #CEEEFD;
+		border-left: 2px solid #CEEEFD;
+		border-right: 2px solid #CEEEFD;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	
+	h2{
+		font-family: ananda;
+		font-size: 30px;
+		text-align: center;
+		text-decoration: underline;
+		margin: 0;
+		padding: 15px 0
+	}
+	
+	h3{
+		font-family: champ;
+		font-size: 30px;
+		text-indent: 30px;
+		font-weight: bold;
+		padding: 10px 20px;
+		margin: 0;
+	}
+	
+	#Module p{
+		font-family: champ;
+		font-size: 20px;
+		text-align: justify;
+		margin: 0;
+		padding: 15px 20px;
+		text-indent: 20px;	
+	}
+
+	#Module img{
+		margin-left: 15px;
+		margin-right: 15px;	
+	}
+	
+	#Module img.in{
+		display: block;
+		margin: auto;	
+	}
+	#Module ul{
+		margin-left: 30px;	
+	}
+	#Module li{
+		list-style-image: url(Images/puce.png);
+		font-family: champ;
+		font-size: 20px;
+	}
+
+/*Page en construction*/
+
+	#fond{
+		height: 500px;
+		background-image: url(Images/in_construction.jpg);
+		background-repeat: no-repeat;
+		background-position: center center;
+		text-align: center;
+		margin: 5px 0;
+	}
+	
+	h4{
+		font-family: pixel;	
+		font-size: 40px;
+		padding-top: 10%;
+		margin: 0;
+	}	
+/*Page de contact*/
+	#top{
+		margin: 10px 20px;	
+	}
+	#contact{
+		margin: 10px 0;
+		border-bottom: 2px solid black;
+		width: 100%;
+	}
+	#top h1{
+		font-family: ananda;
+		font-size: 30px;
+		padding-left: 48%;
+		background: repeating-linear-gradient(
+		    45deg,
+		    #00AAE5,
+		    #00AAE5 10px,
+		    #CDFAFF 10px,
+		    #CDFAFF 20px
+		  );
+		color: white;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		border: 2px solid black;
+		text-align: left;
+		border-radius: 15px;
+	}	
+	#contact table{
+		margin: auto;
+	}
+	#contact td{
+		font-family: champ;
+		font-size: 20px;
+		padding-left: 50px;
+	}
+	#contact tr{
+		margin: 0;
+		padding: 0;	
+	}
+	#contact img{
+		border-radius: 5px;
+		align-self: center;
+	}
+	#contact td img{
+		border-radius: 5px;
+		align-self: flex-end;
+	}
+	#contact img.plan:hover{
+		width: 576px;
+		height: 499px;	
+	}
+	#contact p{
+		text-align: center;	
+		margin: 15px 300px;
+		padding: 5px 0;
+		border: 1px solid #00AAE5;
+		border-radius: 10px;
+	}
+	#contact p:hover{
+		border-color: blue;	
+	}
+	#contact a{
+		font-family: champ;
+		font-size: 20px;
+		color: #00AAE5;
+		text-decoration: none;
+	}
+	#contact a:hover{
+		color: blue;
+		text-decoration: underline;	
+	}
+	#contact p img{
+		vertical-align: middle;
+	}
+/*Footer*/
+	footer{
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+			text-align: right;
+			}
+	footer p{
+		text-align: right;
+	}
+	footer a{
+		background-color: #74C1AE; 
+		border-radius: 5px; 
+		font-family: champ; 
+		padding: 3px 3px; 
+		color: black;
+		text-decoration: none;
+	}

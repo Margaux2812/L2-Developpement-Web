@@ -1,0 +1,28 @@
+@import url("style.css");
+
+/*Exercice 1*/
+#ex1{
+	background-color: #b3b3ff;
+}
+
+/*Exercice 2*/
+#ex2{
+	background-color: #b3c6ff;
+}
+
+/*Exercice 3*/
+#ex3{
+	background-color: #b3d9ff;
+}
+
+/*Exercice 4*/
+#ex4{
+	background-color: #b3ecff;
+}
+
+/*Exercice 5*/
+#ex5{
+	background-color: ##ccf2ff;
+	min-height: 100%;
+	height: auto;
+}
